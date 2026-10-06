@@ -41,7 +41,7 @@ export const contact = {
   email: 'moeezishaq.dev@gmail.com',
   linkedin: { label: 'linkedin.com/in/moeez-ishaq', href: 'https://linkedin.com/in/moeez-ishaq' },
   github: { label: 'github.com/MoeezIshaq', href: 'https://github.com/MoeezIshaq' },
-  resume: { label: 'Download résumé', href: '/Moeez_Ishaq_Resume.pdf', filename: 'Moeez Ishaq - Resume.pdf' },
+  resume: { label: 'Download résumé', href: '/Moeez%20Ishaq%20-%20Resume.pdf', filename: 'Moeez Ishaq - Resume.pdf' },
 }
 
 export const portrait = { src: '/moeez-ishaq.jpg', alt: 'Portrait of Moeez Ishaq' }
