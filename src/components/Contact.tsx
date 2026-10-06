@@ -1,4 +1,4 @@
-import { contact, site } from '../content'
+import { contact, portrait, site } from '../content'
 import { SectionHeading } from './SectionHeading'
 
 export function Contact() {
@@ -16,9 +16,20 @@ export function Contact() {
         <SectionHeading index="05" id="contact-title" title="Contact" />
 
         <div className="md:ml-[calc(8rem+1.5rem)]">
-          <p className="reveal max-w-xl text-lg leading-relaxed text-muted">
-            Open to conversations about software, data, and ML engineering roles.
-          </p>
+          <div className="reveal flex items-center gap-4">
+            <img
+              src={portrait.src}
+              alt=""
+              width={56}
+              height={56}
+              loading="lazy"
+              decoding="async"
+              className="h-14 w-14 shrink-0 rounded-full object-cover object-[50%_30%] ring-1 ring-line-strong"
+            />
+            <p className="max-w-xl text-lg leading-relaxed text-muted">
+              Open to conversations about software, data, and AI/ML engineering roles.
+            </p>
+          </div>
           <a
             href={`mailto:${contact.email}`}
             className="reveal mt-8 inline-block break-all text-[clamp(1.6rem,5.2vw,4.5rem)] font-medium leading-none tracking-[-0.04em] text-fg decoration-accent decoration-2 underline-offset-[0.18em] transition-colors hover:text-accent hover:underline focus-visible:underline"
@@ -45,7 +56,7 @@ export function Contact() {
             </ul>
             <a
               href={contact.resume.href}
-              download
+              download={contact.resume.filename}
               className="inline-flex items-center justify-center gap-3 self-start bg-accent px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-fg sm:self-auto"
             >
               {contact.resume.label}

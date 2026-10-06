@@ -4,6 +4,8 @@ export const SECTION_IDS = ['top', 'experience', 'projects', 'skills', 'educatio
 export const scene = {
   /** Continuous section position: 0 = hero, 1 = experience, ... */
   section: 0,
+  /** Shape index for the morphing sculpture: holds through a section, transitions as the next heading enters. */
+  morph: 0,
   mouse: { x: 0, y: 0 },
   mouseActive: false,
   activeRole: -1,
@@ -44,6 +46,17 @@ function computeSection() {
     f = i + Math.min(1, (probe - starts[i]) / Math.max(1, next - starts[i]))
   }
   scene.section = Math.min(f, SECTION_IDS.length - 1)
+
+  // Morph from each heading's position, not the section edge: a section's shape holds until the
+  // next heading is actually on screen, then transitions as it rises toward the top.
+  let morph = 0
+  for (let i = 1; i < SECTION_IDS.length; i++) {
+    const heading = document.querySelector(`#${SECTION_IDS[i]} h2`)
+    if (!heading) continue
+    const t = Math.min(1, Math.max(0, (vh * 0.92 - heading.getBoundingClientRect().top) / (vh * 0.55)))
+    if (t > 0) morph = i - 1 + t * t * (3 - 2 * t)
+  }
+  scene.morph = Math.min(morph, SECTION_IDS.length - 1)
   const max = document.documentElement.scrollHeight - vh
   scene.progress = max > 0 ? Math.min(1, window.scrollY / max) : 0
 

@@ -1,4 +1,4 @@
-import { contact, site } from '../content'
+import { contact, portrait, site } from '../content'
 
 function SplitWord({ word, offset }: { word: string; offset: number }) {
   return (
@@ -41,41 +41,49 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="mt-10 grid gap-10 md:mt-16 md:grid-cols-12 md:gap-6">
-          <p
-            className="intro-fade text-xl leading-snug tracking-[-0.015em] text-fg md:col-span-5 md:text-2xl"
-            style={{ '--d': '900ms' } as React.CSSProperties}
-          >
-            {site.tagline}
-          </p>
-          <div
-            className="intro-fade space-y-4 text-[0.98rem] leading-relaxed text-muted md:col-span-4 md:col-start-7"
-            style={{ '--d': '1000ms' } as React.CSSProperties}
-          >
-            {site.bio.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
+        <div className="mt-10 grid gap-8 md:mt-16 md:grid-cols-12 md:gap-6">
+          <div className="intro-fade md:col-span-5" style={{ '--d': '900ms' } as React.CSSProperties}>
+            <p className="text-xl leading-snug tracking-[-0.015em] text-fg md:text-2xl">{site.tagline}</p>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <li>
+                <a href="#experience" className="link-underline text-fg">
+                  Selected work ↓
+                </a>
+              </li>
+              <li>
+                <a href={contact.resume.href} download={contact.resume.filename} className="link-underline text-muted hover:text-fg">
+                  Résumé (PDF)
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contact.email}`} className="link-underline text-muted hover:text-fg">
+                  Email
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul
-            className="intro-fade flex flex-row flex-wrap gap-x-6 gap-y-2 text-sm md:col-span-2 md:col-start-11 md:flex-col md:items-end"
-            style={{ '--d': '1100ms' } as React.CSSProperties}
+
+          {/* Solid card so the bio never sits directly on the particle field */}
+          <div
+            className="intro-fade flex gap-5 border border-line bg-ink-2 p-5 md:col-span-6 md:col-start-7 md:p-6"
+            style={{ '--d': '1050ms' } as React.CSSProperties}
           >
-            <li>
-              <a href="#experience" className="link-underline text-fg">
-                Selected work ↓
-              </a>
-            </li>
-            <li>
-              <a href={contact.resume.href} download className="link-underline text-muted hover:text-fg">
-                Résumé (PDF)
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${contact.email}`} className="link-underline text-muted hover:text-fg">
-                Email
-              </a>
-            </li>
-          </ul>
+            <img
+              src={portrait.src}
+              alt={portrait.alt}
+              width={112}
+              height={140}
+              loading="eager"
+              decoding="async"
+              className="h-[7.5rem] w-24 shrink-0 object-cover object-[50%_30%] md:h-36 md:w-28"
+            />
+            <div className="space-y-3 text-[0.95rem] leading-relaxed text-fg/80">
+              <p className="label text-accent!">About</p>
+              {site.bio.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-14 flex items-center justify-between border-t border-line pt-4 md:hidden" aria-hidden="true">

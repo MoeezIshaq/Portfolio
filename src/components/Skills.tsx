@@ -6,7 +6,7 @@ export function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title" className="px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[88rem]">
-        <SectionHeading index="03" id="skills-title" title="Skills" aside={`${skills.length} groups`} />
+        <SectionHeading index="03" id="skills-title" title="Skills"/>
 
         <dl className="md:ml-[calc(8rem+1.5rem)] md:max-w-2xl">
           {skills.map((g, i) => (

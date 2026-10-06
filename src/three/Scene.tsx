@@ -8,10 +8,11 @@ import { dustFrag, dustVert, morphFrag, morphVert } from './shaders'
 
 const INK = '#0d0c0b'
 const FG = '#ece8e1'
-const ACCENT = '#ec5b2c'
+const ACCENT = '#3d7bff'
 
 /** Horizontal placement of the sculpture per section on wide screens (text sits on the left). */
-const X_WIDE = [3.35, 3.5, 3.45, 3.3, 3.5, 3.45]
+const X_WIDE = [3.35, 3.9, 3.45, 3.3, 3.5, 3.9]
+const Y_WIDE = [0, 0, 0, 0, 0, 1.4]
 const INTRO_MS = 2600
 
 type Props = { lite: boolean; reduced: boolean }
@@ -50,11 +51,6 @@ function InvalidateBridge() {
     }
   }, [invalidate])
   return null
-}
-
-const smoothstep = (a: number, b: number, x: number) => {
-  const t = Math.min(1, Math.max(0, (x - a) / (b - a)))
-  return t * t * (3 - 2 * t)
 }
 
 function Morph({ count, interactive, reduced }: { count: number; interactive: boolean; reduced: boolean }) {
@@ -131,9 +127,7 @@ function Morph({ count, interactive, reduced }: { count: number; interactive: bo
     const damp = (a: number, b: number, l: number) => (reduced ? b : THREE.MathUtils.damp(a, b, l, d))
 
     // Morph is held while reading a section and plays as the next heading approaches.
-    const f = store.section
-    const i = Math.floor(f)
-    const target = Math.min(i + smoothstep(0.55, 1, f - i), SHAPE_COUNT - 1)
+    const target = Math.min(store.morph, SHAPE_COUNT - 1)
     s.m = damp(s.m, target, 2.2)
     const k = Math.min(Math.floor(s.m), SHAPE_COUNT - 2)
     const t = s.m - k
@@ -162,7 +156,7 @@ function Morph({ count, interactive, reduced }: { count: number; interactive: bo
     // Placement: right of the text on wide screens, high and dim behind it on narrow ones.
     const xTarget = narrow ? 0 : X_WIDE[k] * (1 - t) + X_WIDE[k + 1] * t
     g.position.x = damp(g.position.x, xTarget, 3)
-    g.position.y = narrow ? 1.6 : 0
+    g.position.y = narrow ? 1.6 : Y_WIDE[k] * (1 - t) + Y_WIDE[k + 1] * t
     g.scale.setScalar(narrow ? 0.62 : 0.82)
     u.uOpacity.value = narrow ? 0.34 : 0.8
 

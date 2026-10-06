@@ -9,7 +9,7 @@ export function Experience() {
       <div className="mx-auto max-w-[88rem]">
         <SectionHeading index="01" id="experience-title" title="Experience" aside={`${experience.length} roles`} />
 
-        <ol className="space-y-5 md:ml-[calc(8rem+1.5rem)] md:max-w-3xl">
+        <ol className="space-y-5 md:ml-[calc(8rem+1.5rem)] md:max-w-[42rem]">
           {experience.map((role, i) => (
             <li key={`${role.company}-${role.start}`} className="reveal">
               <TiltCard
@@ -38,23 +38,6 @@ export function Experience() {
                     </li>
                   ))}
                 </ul>
-
-                {role.extraHighlights && role.extraHighlights.length > 0 && (
-                  <details className="group/more mt-3">
-                    <summary className="ml-4 cursor-pointer list-none font-mono text-xs text-muted hover:text-fg [&::-webkit-details-marker]:hidden">
-                      <span className="group-open/more:hidden">+ {role.extraHighlights.length} more</span>
-                      <span className="hidden group-open/more:inline">− less</span>
-                    </summary>
-                    <ul className="mt-3 space-y-3">
-                      {role.extraHighlights.map((h) => (
-                        <li key={h} className="grid grid-cols-[1rem_1fr] text-[0.95rem] leading-relaxed text-fg/80">
-                          <span aria-hidden="true" className="mt-[0.72em] h-[2px] w-2 bg-faint" />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                )}
 
                 <p className="mt-6 border-t border-line pt-4 font-mono text-[0.7rem] leading-relaxed text-faint">
                   <span className="sr-only">Stack: </span>

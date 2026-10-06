@@ -2,7 +2,7 @@ import { useEffect, useState, useSyncExternalStore } from 'react'
 import { nav, site } from '../content'
 import { activeSection, SECTION_IDS } from '../store'
 
-export function Header() {
+export function Header({ onWorld }: { onWorld?: () => void }) {
   const active = useSyncExternalStore(activeSection.subscribe, activeSection.get)
   const activeId = SECTION_IDS[active]
   const [open, setOpen] = useState(false)
@@ -41,6 +41,17 @@ export function Header() {
                 </li>
               )
             })}
+            {onWorld && (
+              <li>
+                <button
+                  type="button"
+                  onClick={onWorld}
+                  className="border border-line-strong px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-fg transition-colors hover:border-accent"
+                >
+                  3D world
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
 
@@ -70,6 +81,13 @@ export function Header() {
                 </a>
               </li>
             ))}
+            {onWorld && (
+              <li>
+                <button type="button" onClick={onWorld} className="label py-3.5 text-fg!">
+                  Enter 3D world →
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       )}

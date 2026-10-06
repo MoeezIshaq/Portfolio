@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { nav } from '../content'
-import { scene } from '../store'
+import { activeSection, scene } from '../store'
 
-const FIGURES = ['Data globe', 'Document stack', 'Torus knot (2,3)', 'Spiral, 5 arms', 'Lattice 4³', 'Vortex']
+const FIGURES = ['Neural network', 'Briefcase', 'Source </>', 'Gear, 5 groups', 'Graduation cap', 'Paper plane']
 const LABELS = ['Index', ...nav.map((n) => n.label)]
 
 /** Instrument-panel readout pinned to the bottom of wide screens. Purely decorative. */
 export function Hud() {
-  const [s, setS] = useState({ i: 0, p: 0, fps: 0, pts: 0 })
+  const [s, setS] = useState({ i: 0, f: 0, p: 0, fps: 0, pts: 0 })
   useEffect(() => {
     const id = window.setInterval(() => {
       setS({
-        i: Math.min(LABELS.length - 1, Math.round(scene.section)),
+        i: activeSection.get(),
+        f: Math.round(scene.morph),
         p: scene.progress,
         fps: scene.fps,
         pts: scene.particles,
@@ -35,7 +36,7 @@ export function Hud() {
         <span className="w-10 text-right tabular-nums">{Math.round(s.p * 100)}%</span>
       </span>
       <span className="whitespace-nowrap text-right tabular-nums">
-        Fig.{String(s.i + 1).padStart(2, '0')} {FIGURES[s.i]}
+        Fig.{String(s.f + 1).padStart(2, '0')} {FIGURES[s.f]}
         {s.pts > 0 && (
           <>
             {' · '}
