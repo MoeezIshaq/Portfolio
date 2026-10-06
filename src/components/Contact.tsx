@@ -27,7 +27,7 @@ export function Contact() {
               className="h-14 w-14 shrink-0 rounded-full object-cover object-[50%_30%] ring-1 ring-line-strong"
             />
             <p className="max-w-xl text-lg leading-relaxed text-muted">
-              Open to conversations about software, data, and AI/ML engineering roles.
+              Open to conversations about software, and AI/ML engineering roles.
             </p>
           </div>
           <a
