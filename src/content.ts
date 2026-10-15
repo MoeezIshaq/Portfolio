@@ -70,7 +70,7 @@ export const experience: Role[] = [
     highlights: [
       'Automated documentation for 47 internal APIs with a JavaScript pipeline that generates LLM-based docs and publishes to Confluence via MCP, supporting an AI initiative estimated to save ~$700K annually.',
       'Reduced vulnerability remediation to a single PR merge with a Python pipeline (LangChain + internal LLM gateway) that detects, fixes, tests, and raises pull requests for security alerts.',
-      'Cut Client ID Visualizer response time by ~50% by parallelizing GraphQL and REST calls with CompletableFuture, deployed on OpenShift/Kubernetes and powering 1,000+ searches.',
+      'Cut Client ID Visualizer response time by ~50% by parallelizing GraphQL and REST calls in a Java/Spring Boot backend with CompletableFuture, deployed on OpenShift/Kubernetes and powering 1,000+ searches.',
       'Eliminated 100% of developer effort triggering batch jobs with a self-service platform for Excel/CSV → JSON transformations across 1,000+ record batches of KYC and financial data, backed by MongoDB and AWS S3.',
     ],
     stack: ['Python', 'LangChain', 'JavaScript', 'MCP', 'Java', 'GraphQL', 'OpenShift', 'AWS S3'],
