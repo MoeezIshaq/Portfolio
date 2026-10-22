@@ -1,7 +1,7 @@
 """Liquid-glass carousel: 3 slides (1080x1350) cut from one continuous 3240x1350 scene.
 
 Usage: python3 -I make_slides_glass.py OUT_DIR [data.json]
-data.json: {"date": "Oct 22", "total": 65, "picks": [["Meta", "Research Scientist Intern, Robotics"], ... 5 items]}
+data.json: {"date": "Oct 22", "total": 65, "picks": [["Meta", "Full posting title", "Short title"], ... 5 items]}
 """
 import json
 import os
@@ -26,7 +26,9 @@ PICKS = [
 if len(sys.argv) > 2:
     with open(sys.argv[2]) as fh:
         cfg = json.load(fh)
-    DATE, TOTAL, PICKS = cfg["date"], int(cfg["total"]), [tuple(p) for p in cfg["picks"]]
+    DATE, TOTAL = cfg["date"], int(cfg["total"])
+    # a pick is [company, title] or [company, title, shorter title to show on the slide]
+    PICKS = [(p[0], p[2] if len(p) > 2 else p[1]) for p in cfg["picks"]]
 assert len(PICKS) == 5
 
 W, H = 1080, 1350

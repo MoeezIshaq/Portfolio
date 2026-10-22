@@ -8,7 +8,7 @@ today.json:
   "date": "Oct 22",
   "total": 65,                      # count from the email subject
   "postings": [["Company", "Role title", "<uuid>"], ...],   # every posting
-  "picks": [["Company", "Role title"], ... exactly 5]       # teaser slide
+  "picks": [["Company", "Exact title", "Short title (max 50 chars, optional)"], ... exactly 5]
 }
 
 Rewrites public/internships/index.html (data, date, count), renders the three
@@ -45,8 +45,11 @@ uuid_re = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]
 problems = []
 if not re.match(r"^[A-Z][a-z]{2} \d{1,2}$", date):
     problems.append(f"date should look like 'Oct 22', got {date!r}")
-if len(picks) != 5 or any(len(p) != 2 for p in picks):
-    problems.append("picks must be exactly 5 [company, title] pairs")
+if len(picks) != 5 or any(len(p) not in (2, 3) for p in picks):
+    problems.append("picks must be exactly 5 items: [company, title] or [company, title, short title]")
+for p in picks:
+    if len(p) == 3 and len(p[2]) > 50:
+        problems.append(f"short title too long ({len(p[2])} chars, max 50): {p[2]}")
 if any(len(r) != 3 or not uuid_re.match(r[2]) for r in rows):
     problems.append("every posting needs [company, title, uuid] with a valid uuid")
 if len({r[2] for r in rows}) != len(rows):
@@ -56,7 +59,7 @@ if len(rows) != total:
 blob = json.dumps(cfg).lower()
 if BANNED in blob:
     problems.append("input mentions the source; remove it")
-pick_set = {(p[0], p[1]) for p in picks}
+pick_set = {(p[0], p[1]) for p in picks if len(p) >= 2}
 row_set = {(r[0], r[1]) for r in rows}
 if not pick_set <= row_set:
     problems.append("a pick is not in the postings list: " + "; ".join(sorted(f"{a} | {b}" for a, b in pick_set - row_set)))
