@@ -29,12 +29,12 @@ export const site = {
   role: 'Software & AI Engineer',
   location: 'Toronto / Waterloo, ON',
   tagline:
-    'Software & AI engineer building data pipelines, AI developer tooling, and LLM-powered automation.',
+    'Software & AI engineer building payment-routing systems, AI developer tooling, and LLM-powered automation.',
   bio: [
-    'I’m a Computer Science & BBA double-degree student at Wilfrid Laurier University, currently a Machine Learning Engineer Co-op at RBC.',
+    'I’m a Computer Science & BBA double-degree student at Wilfrid Laurier University, currently an Artificial Intelligence Engineer Co-op at RBC.',
     'I’ve built analytics for AI-assisted development, LLM pipelines for security remediation and API documentation, and large-scale data ingestion on Databricks and Azure. I love solving real user problems and developing solutions that deliver measurable impact.',
   ],
-  status: 'ML Engineer Co-op at RBC',
+  status: 'AI Engineer Co-op at RBC',
 }
 
 export const contact = {
@@ -48,18 +48,19 @@ export const portrait = { src: '/moeez-ishaq.jpg', alt: 'Portrait of Moeez Ishaq
 
 export const experience: Role[] = [
   {
-    title: 'Machine Learning Engineer Co-op (AI/Software)',
+    title: 'Artificial Intelligence Engineer Co-op',
     company: 'Royal Bank of Canada',
     location: 'Toronto, ON',
     start: 'Sep 2026',
     end: 'Present',
     highlights: [
-      'Built a Spec Kit extension with 16 lifecycle hooks that auto-captures token, cost, and duration data across 8 SDLC phases and syncs it to GA4, reducing manual tracking of AI-assisted development.',
-      'Improved analytics reliability with orphaned-phase reconciliation, duplicate-run detection, and a 4-hour auto-abandon safeguard in a Bash/Python pipeline, validated by a 61-test regression suite.',
-      'Contributed to an internal adoption portal (FastAPI, React/TypeScript, MongoDB) that scores 15,000+ repositories across 6 adoption tiers and rolls results up 4 org levels.',
-      'Built a self-contained HTML dashboard of per-phase, per-model, and per-story breakdowns across 16 LLM pricing models, showing AI vs. human development cost trade-offs.',
+      'Building a Java/Spring Boot engine to replace the production Fircosoft payment-routing system behind RBC’s ~$40T in annual wires, implementing correspondent-bank routing logic from copybook inputs.',
+      'Built a log-replay pipeline with an IBM MQ capture tool that routes payments and diffs 29 copybook fields against legacy replies, matching 6,030 of 6,058 payments (99.5%) across 19 production logs.',
+      'Caught two rule-engine bugs (exact-vs-contains matching, an unparsed IN operator) affecting 80 rules and ~77K hits by testing ~1,500 exit rules in the ~5,600-rule vendor set, reaching 0 failures.',
+      'Reduced manual AI-assisted development tracking by building a Spec Kit extension with 16 lifecycle hooks that auto-captures token, cost, and duration data across 8 SDLC phases, syncing to GA4.',
+      'Contributed to an internal adoption portal (FastAPI, React/TypeScript, MongoDB) that scores 15,000+ repositories across 6 adoption tiers, rolling results up 4 org levels, giving leadership one view of SpecKit adoption.',
     ],
-    stack: ['Python', 'Bash', 'FastAPI', 'React', 'TypeScript', 'MongoDB', 'GA4'],
+    stack: ['Java', 'Spring Boot', 'IBM MQ', 'FastAPI', 'React', 'TypeScript', 'MongoDB', 'GA4'],
   },
   {
     title: 'Software Engineer Co-op',
@@ -91,6 +92,14 @@ export const experience: Role[] = [
 ]
 
 export const projects: Project[] = [
+  {
+    title: 'Lab Chain-of-Custody Agent',
+    event: { name: 'Agents in Context Hackathon 2026', host: 'MongoDB' },
+    stack: ['Python', 'MongoDB Atlas', 'FastAPI', 'React', 'TypeScript', 'Atlas Vector Search'],
+    description:
+      'An AI custody agent for forensic and clinical labs that makes 100% of actions auditable via an insert-only MongoDB Atlas ledger and a real-time kill switch. A RAG audit engine enables plain-English custody search using Atlas Vector Search (1024-dim embeddings), 43 FastAPI endpoints, and a React/TypeScript frontend.',
+    links: [{ label: 'GitHub', href: 'https://github.com/SarimEkram/Custody-OS' }],
+  },
   {
     title: 'AI-Powered Navigation Assistant',
     event: { name: 'NexHacks 2026', host: 'Carnegie Mellon University' },
@@ -133,9 +142,9 @@ export const skills: SkillGroup[] = [
   { name: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'R', 'GraphQL'] },
   {
     name: 'Data / ML',
-    items: ['PySpark', 'TensorFlow / Keras', 'NumPy / Pandas', 'Databricks', 'LangChain', 'LLM APIs'],
+    items: ['PySpark', 'TensorFlow / Keras', 'NumPy / Pandas', 'Databricks', 'LangChain', 'LLM APIs', 'RAG', 'Atlas Vector Search'],
   },
-  { name: 'Cloud & Infra', items: ['AWS S3', 'Microsoft Azure', 'OpenShift / Kubernetes', 'CI/CD'] },
+  { name: 'Cloud & Infra', items: ['AWS S3', 'Microsoft Azure', 'OpenShift / Kubernetes', 'Docker', 'IBM MQ', 'CI/CD'] },
   {
     name: 'Frameworks & Databases',
     items: ['React', 'Node.js', 'Spring Boot', 'FastAPI', 'PostgreSQL', 'MySQL', 'Supabase', 'MongoDB'],
@@ -150,7 +159,7 @@ export const education = {
   program: 'Double Degree',
   start: 'Sep 2023',
   end: 'Apr 2028',
-  highlights: ['GPA 3.8 / 4.0', 'Dean’s List'],
+  highlights: ['GPA 3.9 / 4.0', 'Dean’s List'],
   certifications: [
     'JPMorgan Chase Software Engineering (Forage Simulation)',
     'Databricks Certified Fundamentals',
