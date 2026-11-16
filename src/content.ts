@@ -32,7 +32,7 @@ export const site = {
     'Software & AI engineer building payment-routing systems, AI developer tooling, and LLM-powered automation.',
   bio: [
     'I’m a Computer Science & BBA double-degree student at Wilfrid Laurier University, currently an Artificial Intelligence Engineer Co-op at RBC, building a Java/Spring Boot engine to replace the legacy Fircosoft payment-routing system behind RBC’s ~$40T in annual wire transfers.',
-    'I’ve validated it by replaying production logs against the legacy system (99.5% of payments matched) and have also built analytics for AI-assisted development, LLM pipelines for security remediation and API documentation, and large-scale data ingestion on Databricks and Azure. I love solving real user problems and developing solutions that deliver measurable impact.',
+    'I’ve built analytics for AI-assisted development, LLM pipelines for security remediation and API documentation, and large-scale data ingestion on Databricks and Azure. I love solving real user problems and developing solutions that deliver measurable impact.',
   ],
   status: 'AI Engineer Co-op at RBC',
 }
